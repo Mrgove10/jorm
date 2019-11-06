@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 /**
  * Copyright Mathieu MULOT
@@ -13,15 +12,11 @@ import java.util.Scanner;
 public class testjcbd {
 
     public static void main(String[] args) {
-        // useSSL=false pour éviter le warning
-        // Pour MySQL
-        //String url = "jdbc:mysql://localhost:3306/structures?useSSL=false";
-        // SQL Server avec précision de l'instance et du port d'écoute
-        //String url = "jdbc:sqlserver://localhost\\MSSQLSERVER:1433;databaseName=structures";
-        // SQL Server avec instance et port d'écoute par défaut
-        String url = "jdbc:sqlserver://localhost;databaseName=structures";
-        String user = "structuser";
-        String mdp = "structuser";
+
+        config C = new config();
+        String url = C.url;
+        String user = C.user;
+        String mdp = C.mdp;
 
         Connection connexion = null;
         Statement state = null;
@@ -32,7 +27,8 @@ public class testjcbd {
 
             connexion = DriverManager.getConnection(url, user, mdp);
             state = connexion.createStatement();
-            result = state.executeQuery("SELECT * FROM secteur");
+            //System.out.println(state.getConnection());
+          /*  result = state.executeQuery("SELECT * FROM secteur");
 
             while (result.next()) {
                 int id = result.getInt("ID");
@@ -85,7 +81,7 @@ public class testjcbd {
                 System.out.println("NOM=" + nom + ", ID=" + id + ", " + "nb secteurs=" + nbSecteurs);
             }
             result.close();
-
+*/
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
