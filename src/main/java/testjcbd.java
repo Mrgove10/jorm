@@ -1,10 +1,5 @@
 import java.sql.*;
 
-/**
- * Copyright Mathieu MULOT
- *
- * @author Mathieu MULOT
- */
 public class testjcbd {
 
     public static void main(String[] args) {
