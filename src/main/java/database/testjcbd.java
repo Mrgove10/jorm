@@ -1,13 +1,17 @@
+package database;
+
+import config.db_config;
+
 import java.sql.*;
 
 public class testjcbd {
 
     public static void main(String[] args) {
 
-        config C = new config();
-        String url = C.url;
-        String user = C.user;
-        String mdp = C.mdp;
+        db_config conf = new db_config();
+        String url = conf.url;
+        String user = conf.user;
+        String mdp = conf.mdp;
 
         Connection connexion = null;
         Statement state = null;
