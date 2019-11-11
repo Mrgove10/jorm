@@ -1,12 +1,8 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * Copyright Mathieu MULOT
+ *
  * @author Mathieu MULOT
  */
 public class testjcbd {
@@ -20,24 +16,24 @@ public class testjcbd {
 
         Connection connexion = null;
         Statement state = null;
-        PreparedStatement ps =  null;
+        PreparedStatement ps = null;
         ResultSet result = null;
 
         try {
-
             connexion = DriverManager.getConnection(url, user, mdp);
             state = connexion.createStatement();
-            //System.out.println(state.getConnection());
-          /*  result = state.executeQuery("SELECT * FROM secteur");
+            result = state.executeQuery("SELECT * FROM TestTable");
 
             while (result.next()) {
                 int id = result.getInt("ID");
-                String libelle = result.getString("LIBELLE");
-                System.out.println("ID=" + id + ", " + "LIBELLE=" + libelle);
+                String text = result.getString("Text");
+                int numero = result.getInt("int");
+                boolean bool = result.getBoolean("Boolean");
+
+                System.out.println("ID=" + id + ", Text=" + text + ", Int=" + numero + ", Boolean=" + bool);
             }
             result.close();
-
-            int nbRows = state.executeUpdate("INSERT INTO SECTEUR(LIBELLE) VALUES ('Santé')");
+/*            int nbRows = state.executeUpdate("INSERT INTO SECTEUR(LIBELLE) VALUES ('Santé')");
             System.out.println("Nombre de lignes insérées=" + nbRows);
 
             nbRows=state.executeUpdate("INSERT INTO SECTEUR(LIBELLE) VALUES ('Aéronautique'),('Aérospatial')",
