@@ -1,59 +1,45 @@
-create table creation
+create table Album
 (
     ID          int auto_increment,
-    creatorName varchar(2048) null,
-    title       varchar(2048) null,
-    yearRelease int           null,
+    Members     varchar(2048) null,
+    Title       varchar(2048) null,
+    DateRelease DATE          null,
     constraint creation_ID_uindex
         unique (ID)
 )
-    comment 'creation of an artist';
+    comment 'Table album';
 
-alter table creation
+alter table Album
     add primary key (ID);
 
-create table liveAlbum
+create table LiveAlbum
 (
     ID               int auto_increment,
-    creationID       int           null,
-    placeOfRecording varchar(2048) null,
+    AlbumID          int           null,
+    PlaceOfRecording varchar(2048) null,
     constraint liveAlbum_ID_uindex
         unique (ID),
     constraint liveAlbum_creation_ID_fk
-        foreign key (creationID) references creation (ID)
+        foreign key (AlbumID) references Album (ID)
 )
-    comment 'live recordings';
+    comment 'Table liveAlbum';
 
-alter table liveAlbum
+alter table LiveAlbum
     add primary key (ID);
 
-create table music
+create table BOAlbum
 (
     ID         int auto_increment,
-    creationID int           null,
-    name       varchar(2048) null,
-    constraint music_ID_uindex
+    AlbumID    int           null,
+    Film       varchar(2048) null,
+    constraint boAlbum_ID_uindex
         unique (ID),
-    constraint music_creation_ID_fk
-        foreign key (creationID) references creation (ID)
+    constraint boAlbum_creation_ID_fk
+        foreign key (AlbumID) references Album (ID)
 )
-    comment 'music creations';
+    comment 'Table BOAlbum';
 
-alter table music
+alter table BOAlbum
     add primary key (ID);
 
-create table ost
-(
-    ID         int auto_increment,
-    creationID int           null,
-    film       varchar(2048) null,
-    constraint ost_ID_uindex
-        unique (ID),
-    constraint ost_creation_ID_fk
-        foreign key (creationID) references creation (ID)
-)
-    comment 'original sound track';
-
-alter table ost
-    add primary key (ID);
 
