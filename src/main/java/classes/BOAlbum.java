@@ -5,8 +5,8 @@ import java.util.Date;
 public class BOAlbum extends Album {
     public String Film;
 
-    public BOAlbum(String film, String members, String title, Date dateRelease) {
-        super(members, title, dateRelease);
+    public BOAlbum(String film, Integer id, String members, String title, Date dateRelease) {
+        super(id, members, title, dateRelease);
         Film = film;
     }
 

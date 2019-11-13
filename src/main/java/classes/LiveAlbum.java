@@ -6,8 +6,8 @@ public class LiveAlbum extends Album {
 
     public String PlaceOfRecording;
 
-    public LiveAlbum(String placeOfRecording, String members, String title, Date dateRelease) {
-        super(members, title, dateRelease);
+    public LiveAlbum(String placeOfRecording,Integer id, String members, String title, Date dateRelease) {
+        super(id, members, title, dateRelease);
         PlaceOfRecording = placeOfRecording;
     }
 

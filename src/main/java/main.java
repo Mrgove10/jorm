@@ -1,4 +1,6 @@
 import classes.Choice;
+import fileReader.ImportFile;
+import serialise.ExportFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,9 +15,13 @@ public class main {
         switch (choice.TypeChoice){
             case 1:
                 System.out.println("Import in db...");
+                ImportFile importFile = new ImportFile();
+                importFile.Import(choice);
                 break;
             case 2:
                 System.out.println("Export from db...");
+                ExportFile exportFile = new ExportFile();
+                exportFile.Export(choice);
                 break;
             default:
                 System.out.println("Wrong option selected");
