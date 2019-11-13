@@ -17,7 +17,8 @@ public class ImportFile {
         try
         {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream("src/main/java/fileReader/testFile.ser");
+            //"src/main/java/fileReader/testFile.ser"
+            FileInputStream file = new FileInputStream(parameters.RootFile);
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object

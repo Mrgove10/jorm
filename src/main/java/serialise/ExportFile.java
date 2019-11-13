@@ -28,7 +28,7 @@ public class ExportFile {
             state = connection.createStatement();
             result = state.executeQuery("SELECT * FROM Album");
 
-            // "src/main/java/serialise/testFile.txt"
+            // "src/main/java/serialise/testFile.ser"
             FileOutputStream file = new FileOutputStream(parameters.RootFile);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
