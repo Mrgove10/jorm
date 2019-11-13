@@ -45,10 +45,11 @@ public class ImportFile {
                 try {
                     connection = DriverManager.getConnection(url, user, mdp);
                     state = connection.createStatement();
-                    /*for (Album album:albums) {
-                        String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) VALUES ("+album.Id+","+album.Members+","+album.Title+","+album.DateRelease+")";
+                    for (Album album:albums) {
+                        String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
+                                        "VALUES ("+album.Id+",'"+album.Members+"','"+album.Title+"','"+album.DateRelease+"')";
                         state.executeUpdate(request);
-                    }*/
+                    }
                 }catch (Exception e) {
                     e.printStackTrace();
                     System.out.println(e);
