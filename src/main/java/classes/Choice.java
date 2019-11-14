@@ -16,38 +16,4 @@ public class Choice {
         JdbcPassword = jdbcPassword;
         RootLogsFile = rootLogsFile;
     }
-
-    //Type
-    public int getTypeChoice() {
-        return TypeChoice;
-    }
-
-    public void setTypeChoice(int typeChoice) {
-        TypeChoice = typeChoice;
-    }
-
-    //Root
-    public String getRootFile() {
-        return RootFile;
-    }
-
-    public void setRootFile(String rootFile) {
-        RootFile = rootFile;
-    }
-
-    public String getJdbcUrl() {
-        return JdbcUrl;
-    }
-
-    public void setJdbcUrl(String jdbcUrl) {
-        JdbcUrl = jdbcUrl;
-    }
-
-    public String getRootLogsFile() {
-        return RootLogsFile;
-    }
-
-    public void setRootLogsFile(String rootLogsFile) {
-        RootLogsFile = rootLogsFile;
-    }
 }

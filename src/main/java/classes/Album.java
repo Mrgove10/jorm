@@ -15,28 +15,4 @@ public class Album implements Serializable {
         Title = title;
         DateRelease = dateRelease;
     }
-
-    public String getMembers() {
-        return Members;
-    }
-
-    public void setMembers(String members) {
-        Members = members;
-    }
-
-    public String getTitle() {
-        return Title;
-    }
-
-    public void setTitle(String title) {
-        Title = title;
-    }
-
-    public Date getDateRelease() {
-        return DateRelease;
-    }
-
-    public void setDateRelease(Date dateRelease) {
-        DateRelease = dateRelease;
-    }
 }

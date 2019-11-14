@@ -10,12 +10,4 @@ public class LiveAlbum extends Album {
         super(id, members, title, dateRelease);
         PlaceOfRecording = placeOfRecording;
     }
-
-    public String getPlaceOfRecording() {
-        return PlaceOfRecording;
-    }
-
-    public void setPlaceOfRecording(String placeOfRecording) {
-        PlaceOfRecording = placeOfRecording;
-    }
 }

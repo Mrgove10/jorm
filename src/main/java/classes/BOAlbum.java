@@ -9,12 +9,4 @@ public class BOAlbum extends Album {
         super(id, members, title, dateRelease);
         Film = film;
     }
-
-    public String getFilm() {
-        return Film;
-    }
-
-    public void setFilm(String film) {
-        Film = film;
-    }
 }

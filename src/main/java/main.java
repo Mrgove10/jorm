@@ -10,9 +10,6 @@ public class main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws IOException {
-
-        System.out.println("- Va voir dans les fichiers ImportFile/ExportFile pour le chemin des fichiers :p");
-        System.out.println("==> Tu peux laisser vide les 2 dernieres entrées, j'ai pas géré pour le moment...");
         System.out.println("- J'ai pas encore mis en place le fichier de log");
 
         // get the parameters enter by the user

@@ -20,11 +20,11 @@ public class ImportFile {
 
             // Method for deserialization of object
             ArrayList<Album> albums = new ArrayList<Album>();
-            try{
+            try {
                 // while no error is catch
-                while(true){
+                while (true) {
                     // read each object in the file
-                    Album album = (Album)in.readObject();
+                    Album album = (Album) in.readObject();
 
                     // add the object in the list
                     albums.add(album);
@@ -32,10 +32,10 @@ public class ImportFile {
                     System.out.println("Object has been deserialized ");
                     System.out.println(album.Title);
                 }
-            }catch(EOFException ex){
+            } catch (EOFException ex) {
                 // the exception is catch when all objects have been already read
                 System.out.println("End of the file");
-            }finally {
+            } finally {
 
                 Connection connection = null;
                 Statement state = null;
@@ -46,7 +46,7 @@ public class ImportFile {
                     state = connection.createStatement();
 
                     // foreach object in the list albums
-                    for (Album album:albums) {
+                    for (Album album : albums) {
                         // insert it in the table Album
                         String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
                                 "VALUES (" + album.Id + ",'" + album.Members + "','" + album.Title + "','" + album.DateRelease + "')";
