@@ -13,6 +13,7 @@ import java.sql.*;
 public class ExportFile {
     // = serialization
     public void Export(Choice parameters){
+        // connection to the database
         db_config conf = new db_config();
         String url = conf.url;
         String user = conf.user;
@@ -29,21 +30,28 @@ public class ExportFile {
             result = state.executeQuery("SELECT * FROM Album");
 
             // "src/main/java/serialise/testFile.ser"
+            // open a stream of the file where the user want to export
             FileOutputStream file = new FileOutputStream(parameters.RootFile);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
+            // while we don't have export all the object of the database
             while (result.next()) {
+                // get the info of the album
                 int id = result.getInt("ID");
                 String members = result.getString("Members");
                 String title = result.getString("Title");
                 Date dateRelease = result.getDate("DateRelease");
 
+                // send it to the object
                 Album album = new Album(id, members, title, dateRelease);
 
+                // write the object in the file
                 out.writeObject(album);
 
                 System.out.println("Object has been serialized");
             }
+
+            // then close all the connection
             out.flush();
             out.close();
             result.close();

@@ -15,45 +15,51 @@ public class main {
         System.out.println("==> Tu peux laisser vide les 2 dernieres entrées, j'ai pas géré pour le moment...");
         System.out.println("- J'ai pas encore mis en place le fichier de log");
         System.out.println("- J'ai pas compris le truc de son URL JDBC...");
+
+        // get the parameters enter by the user
         Choice choice = GetParameters();
 
-
+        // check if the user want to export or import
         switch (choice.TypeChoice){
+            // if the user want to import
             case 1:
                 System.out.println("Import in db...");
                 ImportFile importFile = new ImportFile();
                 importFile.Import(choice);
                 break;
+            // if the user want to export
             case 2:
                 System.out.println("Export from db...");
                 ExportFile exportFile = new ExportFile();
                 exportFile.Export(choice);
                 break;
+            // if the user as not selected 1 ou 2
             default:
                 System.out.println("Wrong option selected");
         }
     }
 
     public static Choice GetParameters() throws IOException {
-        Choice choiceAction = new Choice();
 
+        // get if the user want to import or export
         System.out.println("Press 1 to import a file");
         System.out.println("Press 2 to export from database");
         int type = Integer.parseInt(reader.readLine());
 
+        // get the root of the file to import or the root of the file where the user want to export
         System.out.println("Root of the file export/import:");
         String rootFile = reader.readLine();
 
+        // get the jdbc url of the user
         System.out.println("URL JDBC :");
         String jdbcUrl = reader.readLine();
 
+        // get the root of the file where the user want to export the logs
         System.out.println("Root of the logs file :");
         String logsFile = reader.readLine();
 
-        choiceAction.TypeChoice = type;
-        choiceAction.RootFile = rootFile;
-        choiceAction.JdbcUrl = jdbcUrl;
-        choiceAction.RootLogsFile = logsFile;
+        // create an object Choice with the entries of the user
+        Choice choiceAction = new Choice(type, rootFile, jdbcUrl, logsFile);
 
         return choiceAction;
     }

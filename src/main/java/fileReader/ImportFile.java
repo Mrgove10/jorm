@@ -24,16 +24,22 @@ public class ImportFile {
             // Method for deserialization of object
             ArrayList<Album> albums = new ArrayList<Album>();
             try{
+                // while no error is catch
                 while(true){
+                    // read each object in the file
                     Album album = (Album)in.readObject();
+
+                    // add the object in the list
                     albums.add(album);
 
                     System.out.println("Object has been deserialized ");
                     System.out.println(album.Title);
                 }
             }catch(EOFException ex){
+                // the exception is catch when all objects have been already read
                 System.out.println("End of the file");
             }finally {
+                // connection to the database
                 db_config conf = new db_config();
                 String url = conf.url;
                 String user = conf.user;
@@ -46,7 +52,10 @@ public class ImportFile {
                 try {
                     connection = DriverManager.getConnection(url, user, mdp);
                     state = connection.createStatement();
+
+                    // foreach object in the list albums
                     for (Album album:albums) {
+                        // insert it in the table Album
                         String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
                                         "VALUES ("+album.Id+",'"+album.Members+"','"+album.Title+"','"+album.DateRelease+"')";
                         state.executeUpdate(request);
@@ -56,6 +65,7 @@ public class ImportFile {
                     System.out.println(e);
                 } finally {
                     try {
+                        // close all the connection
                         if (result != null)
                             result.close();
                         if (state != null)
