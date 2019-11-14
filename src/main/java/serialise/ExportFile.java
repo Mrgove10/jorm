@@ -20,7 +20,6 @@ public class ExportFile {
             state = connection.createStatement();
             result = state.executeQuery("SELECT * FROM Album");
 
-            // "src/main/java/serialise/testFile.ser"
             // open a stream of the file where the user want to export
             FileOutputStream file = new FileOutputStream(parameters.RootFile);
             ObjectOutputStream out = new ObjectOutputStream(file);

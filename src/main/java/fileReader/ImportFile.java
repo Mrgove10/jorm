@@ -15,7 +15,6 @@ public class ImportFile {
     public void Import(Choice parameters) {
         try {
             // Reading the object from a file
-            //"src/main/java/fileReader/testFile.ser"
             FileInputStream file = new FileInputStream(parameters.RootFile);
             ObjectInputStream in = new ObjectInputStream(file);
 
