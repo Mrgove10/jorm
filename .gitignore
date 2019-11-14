@@ -12,7 +12,7 @@ db_config.java
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package files #
 *.jar
 *.war
 *.nar

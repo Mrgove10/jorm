@@ -1,5 +1,6 @@
 import classes.Choice;
 import fileReader.ImportFile;
+import logging.logger;
 import serialise.ExportFile;
 
 import java.io.BufferedReader;
@@ -8,10 +9,13 @@ import java.io.InputStreamReader;
 
 public class main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static logger log = new logger();
 
     public static void main(String[] args) throws IOException {
         System.out.println("- J'ai pas encore mis en place le fichier de log");
-
+        log.AddLog(logger.Severity.Debug, "Example debug log");
+        log.AddLog(logger.Severity.Warning, "Example warning log");
+        log.AddLog(logger.Severity.Error, "Example error log");
         // get the parameters enter by the user
         Choice choice = GetParameters();
 
