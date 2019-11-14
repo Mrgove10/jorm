@@ -2,7 +2,6 @@ package fileReader;
 
 import classes.Album;
 import classes.Choice;
-import config.db_config;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -13,9 +12,8 @@ import java.util.ArrayList;
 
 public class ImportFile {
     // = deserialization
-    public void Import(Choice parameters){
-        try
-        {
+    public void Import(Choice parameters) {
+        try {
             // Reading the object from a file
             //"src/main/java/fileReader/testFile.ser"
             FileInputStream file = new FileInputStream(parameters.RootFile);
@@ -39,28 +37,23 @@ public class ImportFile {
                 // the exception is catch when all objects have been already read
                 System.out.println("End of the file");
             }finally {
-                // connection to the database
-                db_config conf = new db_config();
-                String url = conf.url;
-                String user = conf.user;
-                String mdp = conf.mdp;
 
                 Connection connection = null;
                 Statement state = null;
                 PreparedStatement ps = null;
                 ResultSet result = null;
                 try {
-                    connection = DriverManager.getConnection(url, user, mdp);
+                    connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
                     state = connection.createStatement();
 
                     // foreach object in the list albums
                     for (Album album:albums) {
                         // insert it in the table Album
                         String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
-                                        "VALUES ("+album.Id+",'"+album.Members+"','"+album.Title+"','"+album.DateRelease+"')";
+                                "VALUES (" + album.Id + ",'" + album.Members + "','" + album.Title + "','" + album.DateRelease + "')";
                         state.executeUpdate(request);
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println(e);
                 } finally {
@@ -81,14 +74,9 @@ public class ImportFile {
                 in.close();
                 file.close();
             }
-        }
-
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
-        }
-        catch(ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
     }

@@ -8,19 +8,18 @@ import java.io.InputStreamReader;
 
 public class main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws IOException {
 
-        System.out.println("ADRIIIIENNN");
         System.out.println("- Va voir dans les fichiers ImportFile/ExportFile pour le chemin des fichiers :p");
         System.out.println("==> Tu peux laisser vide les 2 dernieres entrées, j'ai pas géré pour le moment...");
         System.out.println("- J'ai pas encore mis en place le fichier de log");
-        System.out.println("- J'ai pas compris le truc de son URL JDBC...");
 
         // get the parameters enter by the user
         Choice choice = GetParameters();
 
         // check if the user want to export or import
-        switch (choice.TypeChoice){
+        switch (choice.TypeChoice) {
             // if the user want to import
             case 1:
                 System.out.println("Import in db...");
@@ -54,12 +53,20 @@ public class main {
         System.out.println("URL JDBC :");
         String jdbcUrl = reader.readLine();
 
+        // get the jdbc user of the user
+        System.out.println("Database user:");
+        String jdbcUser = reader.readLine();
+
+        // get the jdbc password of the user
+        System.out.println("Database password :");
+        String jdbcPass = reader.readLine();
+
         // get the root of the file where the user want to export the logs
         System.out.println("Root of the logs file :");
         String logsFile = reader.readLine();
 
         // create an object Choice with the entries of the user
-        Choice choiceAction = new Choice(type, rootFile, jdbcUrl, logsFile);
+        Choice choiceAction = new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
 
         return choiceAction;
     }

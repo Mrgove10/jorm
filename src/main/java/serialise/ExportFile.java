@@ -2,30 +2,21 @@ package serialise;
 
 import classes.Album;
 import classes.Choice;
-import config.db_config;
 
-import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.*;
 
 public class ExportFile {
     // = serialization
-    public void Export(Choice parameters){
-        // connection to the database
-        db_config conf = new db_config();
-        String url = conf.url;
-        String user = conf.user;
-        String mdp = conf.mdp;
-
+    public void Export(Choice parameters) {
         Connection connection = null;
         Statement state = null;
         PreparedStatement ps = null;
         ResultSet result = null;
 
         try {
-            connection = DriverManager.getConnection(url, user, mdp);
+            connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
             state = connection.createStatement();
             result = state.executeQuery("SELECT * FROM Album");
 
