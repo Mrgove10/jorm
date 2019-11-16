@@ -1,7 +1,7 @@
 # Jorm
 
 File Import : src/main/java/files/testFileExport.ser
-File Export : src/main/java/files/testFileImport.ser
+File export : src/main/java/files/testFileImport.ser
 
 Log file : src/main/java/files/Logs.log
 

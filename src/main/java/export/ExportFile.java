@@ -1,15 +1,19 @@
-package serialise;
+package export;
 
 import classes.Album;
 import classes.Choice;
+import logging.logger;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.*;
 
 public class ExportFile {
-    // = serialization
-    public void Export(Choice parameters) {
+    private static logger log = new logger();
+    //serialization
+    public void Export(Choice parameters) throws IOException {
+
         Connection connection = null;
         Statement state = null;
         PreparedStatement ps = null;
@@ -28,6 +32,7 @@ public class ExportFile {
             while (result.next()) {
                 // get the info of the album
                 int id = result.getInt("ID");
+                log.AddLog(logger.Severity.Debug, "Adding "+id);
                 String members = result.getString("Members");
                 String title = result.getString("Title");
                 Date dateRelease = result.getDate("DateRelease");
@@ -37,7 +42,7 @@ public class ExportFile {
 
                 // write the object in the file
                 out.writeObject(album);
-
+                log.AddLog(logger.Severity.Debug, "Object has been serialized");
                 System.out.println("Object has been serialized");
             }
 
@@ -47,7 +52,7 @@ public class ExportFile {
             result.close();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println(e);
+            log.AddLog(logger.Severity.Error, e.toString());
         } finally {
             try {
                 if (result != null)

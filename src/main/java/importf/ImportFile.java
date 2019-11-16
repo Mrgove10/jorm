@@ -1,7 +1,8 @@
-package fileReader;
+package importf;
 
 import classes.Album;
 import classes.Choice;
+import logging.logger;
 
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -11,6 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ImportFile {
+    private static logger log = new logger();
     // = deserialization
     public void Import(Choice parameters) {
         try {
@@ -50,11 +52,14 @@ public class ImportFile {
                         // insert it in the table Album
                         String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
                                 "VALUES (" + album.Id + ",'" + album.Members + "','" + album.Title + "','" + album.DateRelease + "')";
+                        log.AddLog(logger.Severity.Debug, request);
                         state.executeUpdate(request);
                     }
+                    log.AddLog(logger.Severity.Debug, "File has been Imported");
+
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println(e);
+                    log.AddLog(logger.Severity.Error, e.toString());
                 } finally {
                     try {
                         // close all the connection

@@ -1,7 +1,7 @@
 import classes.Choice;
-import fileReader.ImportFile;
+import importf.ImportFile;
 import logging.logger;
-import serialise.ExportFile;
+import export.ExportFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,11 +11,15 @@ public class main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static logger log = new logger();
 
+    /*
+    log.AddLog(logger.Severity.Debug, "Example debug log");
+    log.AddLog(logger.Severity.Warning, "Example warning log");
+    log.AddLog(logger.Severity.Error, "Example error log");
+     */
     public static void main(String[] args) throws IOException {
+        log.AddLog(logger.Severity.Debug, "Program Started");
         System.out.println("- J'ai pas encore mis en place le fichier de log");
-        log.AddLog(logger.Severity.Debug, "Example debug log");
-        log.AddLog(logger.Severity.Warning, "Example warning log");
-        log.AddLog(logger.Severity.Error, "Example error log");
+
         // get the parameters enter by the user
         Choice choice = GetParameters();
 
@@ -23,12 +27,14 @@ public class main {
         switch (choice.TypeChoice) {
             // if the user want to import
             case 1:
+                log.AddLog(logger.Severity.Debug, "Import chosen");
                 System.out.println("Import in db...");
                 ImportFile importFile = new ImportFile();
                 importFile.Import(choice);
                 break;
             // if the user want to export
             case 2:
+                log.AddLog(logger.Severity.Debug, "Export chosen");
                 System.out.println("Export from db...");
                 ExportFile exportFile = new ExportFile();
                 exportFile.Export(choice);
@@ -40,7 +46,6 @@ public class main {
     }
 
     public static Choice GetParameters() throws IOException {
-
         // get if the user want to import or export
         System.out.println("Press 1 to import a file");
         System.out.println("Press 2 to export from database");
@@ -67,8 +72,6 @@ public class main {
         String logsFile = reader.readLine();
 
         // create an object Choice with the entries of the user
-        Choice choiceAction = new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
-
-        return choiceAction;
+        return new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
     }
 }
