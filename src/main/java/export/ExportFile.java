@@ -11,6 +11,7 @@ import java.sql.*;
 
 public class ExportFile {
     private static logger log = new logger();
+
     //serialization
     public void Export(Choice parameters) throws IOException {
 
@@ -32,7 +33,7 @@ public class ExportFile {
             while (result.next()) {
                 // get the info of the album
                 int id = result.getInt("ID");
-                log.AddLog(logger.Severity.Debug, "Adding "+id);
+                log.AddLog(logger.Severity.Debug, "Adding " + id);
                 String members = result.getString("Members");
                 String title = result.getString("Title");
                 Date dateRelease = result.getDate("DateRelease");
