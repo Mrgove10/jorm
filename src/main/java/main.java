@@ -1,7 +1,7 @@
 import classes.Choice;
+import export.ExportFile;
 import importf.ImportFile;
 import logging.logger;
-import export.ExportFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,14 +11,8 @@ public class main {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static logger log = new logger();
 
-    /*
-    log.AddLog(logger.Severity.Debug, "Example debug log");
-    log.AddLog(logger.Severity.Warning, "Example warning log");
-    log.AddLog(logger.Severity.Error, "Example error log");
-     */
     public static void main(String[] args) throws IOException {
         log.AddLog(logger.Severity.Debug, "Program Started");
-        System.out.println("- J'ai pas encore mis en place le fichier de log");
 
         // get the parameters enter by the user
         Choice choice = GetParameters();
@@ -42,6 +36,7 @@ public class main {
             // if the user as not selected 1 ou 2
             default:
                 System.out.println("Wrong option selected");
+                log.AddLog(logger.Severity.Error, "Wrong option selected");
         }
     }
 

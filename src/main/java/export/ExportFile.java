@@ -65,6 +65,7 @@ public class ExportFile {
                     connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
+                log.AddLog(logger.Severity.Error, e.getMessage());
             }
         }
     }

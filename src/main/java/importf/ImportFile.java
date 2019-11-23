@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ImportFile {
     private static logger log = new logger();
     // = deserialization
-    public void Import(Choice parameters) {
+    public void Import(Choice parameters) throws IOException {
         try {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(parameters.RootFile);
@@ -59,7 +59,7 @@ public class ImportFile {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    log.AddLog(logger.Severity.Error, e.toString());
+                    log.AddLog(logger.Severity.Error, e.getMessage());
                 } finally {
                     try {
                         // close all the connection
@@ -80,8 +80,10 @@ public class ImportFile {
             }
         } catch (IOException ex) {
             System.out.println("IOException is caught");
+            log.AddLog(logger.Severity.Error, ex.getMessage());
         } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
+            log.AddLog(logger.Severity.Error, ex.getMessage());
         }
     }
 }
