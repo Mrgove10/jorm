@@ -12,8 +12,6 @@ import java.sql.SQLException;
 
 public class ImportFile {
     private static logger log = new logger();
-
-    // = deserialization
     public void Import(Choice parameters) throws IOException {
         try {
             // Reading the object from a file
@@ -22,8 +20,9 @@ public class ImportFile {
             Connection connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
 
             Import_Album.Import_Album(log, connection, in);
-            Import_BOAlbum.Import_BOAlbum(log, connection, in);
-            Import_LiveAlbum.Import_LiveAlbum(log, connection, in);
+     //       Import_BOAlbum.Import_BOAlbum(log, connection, in);
+       //     Import_LiveAlbum.Import_LiveAlbum(log, connection, in);
+
             file.close();
         } catch (IOException ex) {
             System.out.println("IOException is caught");

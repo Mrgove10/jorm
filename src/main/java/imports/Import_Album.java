@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Import_Album {
     public static void Import_Album(logger log, Connection connection, ObjectInputStream in) throws IOException {
         // Method for deserialization of object
-        ArrayList<Album> albums = new ArrayList<Album>();
+        ArrayList<Album> albums = new ArrayList<>();
         try {
             // while no error is catch
             while (true) {
@@ -56,12 +56,8 @@ public class Import_Album {
             } finally {
                 try {
                     // close all the connection
-                    if (result != null)
-                        result.close();
                     if (state != null)
                         state.close();
-                    if (ps != null)
-                        ps.close();
                     if (connection != null)
                         connection.close();
                 } catch (SQLException e) {
