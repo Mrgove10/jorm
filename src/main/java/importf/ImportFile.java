@@ -50,8 +50,11 @@ public class ImportFile {
                     // foreach object in the list albums
                     for (Album album : albums) {
                         // insert it in the table Album
-                        String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) " +
-                                "VALUES (" + album.Id + ",'" + album.Members + "','" + album.Title + "','" + album.DateRelease + "')";
+                        String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) VALUES (" +
+                                album.Id + ",'" +
+                                album.Members + "','" +
+                                album.Title + "','" +
+                                album.DateRelease + "')";
                         log.AddLog(logger.Severity.Debug, request);
                         state.executeUpdate(request);
                     }

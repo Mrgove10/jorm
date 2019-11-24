@@ -66,54 +66,67 @@ public class RegistrationFormApplication extends Application {
 
     private void addUIControls(GridPane gridPane) {
         // Add Header
-        Label headerLabel = new Label("Registration Form");
+        Label headerLabel = new Label("EXPORT FROM DATABASE");
         headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         gridPane.add(headerLabel, 0,0,2,1);
         GridPane.setHalignment(headerLabel, HPos.CENTER);
         GridPane.setMargin(headerLabel, new Insets(20, 0,20,0));
 
-        // Add Name Label
-        Label nameLabel = new Label("Full Name : ");
-        gridPane.add(nameLabel, 0,1);
+        // Add Name Text Field
+        Label logFileLabel = new Label("Log Files : ");
+        gridPane.add(logFileLabel, 0,1);
 
         // Add Name Text Field
-        TextField nameField = new TextField();
-        nameField.setPrefHeight(40);
-        gridPane.add(nameField, 1,1);
+        TextField logFileField = new TextField();
+        logFileField.setPrefHeight(40);
+        gridPane.add(logFileField, 1,1);
+
+        // Add Name Label
+        Label exportFileLabel = new Label("Export File Location : ");
+        gridPane.add(exportFileLabel, 0,2);
+
+        // Add Name Text Field
+        TextField exportFileField = new TextField();
+        exportFileField.setPrefHeight(40);
+        gridPane.add(exportFileField, 1,2);
 
 
         // Add Email Label
         Label emailLabel = new Label("Email ID : ");
-        gridPane.add(emailLabel, 0, 2);
+        gridPane.add(emailLabel, 0, 3);
 
         // Add Email Text Field
         TextField emailField = new TextField();
         emailField.setPrefHeight(40);
-        gridPane.add(emailField, 1, 2);
+        gridPane.add(emailField, 1, 3);
 
         // Add Password Label
         Label passwordLabel = new Label("Password : ");
-        gridPane.add(passwordLabel, 0, 3);
+        gridPane.add(passwordLabel, 0, 4);
 
         // Add Password Field
         PasswordField passwordField = new PasswordField();
         passwordField.setPrefHeight(40);
-        gridPane.add(passwordField, 1, 3);
+        gridPane.add(passwordField, 1, 4);
 
         // Add Submit Button
         Button submitButton = new Button("Submit");
         submitButton.setPrefHeight(40);
         submitButton.setDefaultButton(true);
         submitButton.setPrefWidth(100);
-        gridPane.add(submitButton, 0, 4, 2, 1);
+        gridPane.add(submitButton, 0, 5, 2, 1);
         GridPane.setHalignment(submitButton, HPos.CENTER);
         GridPane.setMargin(submitButton, new Insets(20, 0,20,0));
 
         submitButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(nameField.getText().isEmpty()) {
-                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter your name");
+                if(logFileField.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter the log location");
+                    return;
+                }
+                if(exportFileField.getText().isEmpty()) {
+                    showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!", "Please enter the file export location");
                     return;
                 }
                 if(emailField.getText().isEmpty()) {
@@ -125,7 +138,7 @@ public class RegistrationFormApplication extends Application {
                     return;
                 }
 
-                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + nameField.getText());
+                showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!", "Welcome " + logFileField.getText());
             }
         });
     }
