@@ -1,4 +1,4 @@
-package export;
+package exports;
 
 import classes.Album;
 import logging.logger;
