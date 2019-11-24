@@ -24,14 +24,14 @@ public class Export_BOAlbum {
                 // get the info of the album
                 int id = result.getInt("ID");
                 log.AddLog(logger.Severity.Debug, "Adding LiveAlbum " + id);
-                String AlbumID = result.getString("AlbumID"); //TODO
+                int AlbumID = result.getInt("AlbumID");
                 String Film = result.getString("Film");
                 String members = result.getString("Members");
                 String title = result.getString("Title");
                 java.sql.Date dateRelease = result.getDate("DateRelease");
 
                 // send it to the object
-                BOAlbum album = new BOAlbum(Film, id, members, title, dateRelease);
+                BOAlbum album = new BOAlbum(Film, id, members, title, dateRelease,AlbumID);
 
                 // write the object in the file
                 out.writeObject(album);

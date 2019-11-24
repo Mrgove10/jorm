@@ -46,6 +46,10 @@ public class main {
         System.out.println("Press 2 to export from database");
         int type = Integer.parseInt(reader.readLine());
 
+        // get the root of the file where the user want to export the logs
+        System.out.println("Root of the logs file :");
+        String logsFile = reader.readLine();
+
         // get the root of the file to import or the root of the file where the user want to export
         System.out.println("Root of the file export/import:");
         String rootFile = reader.readLine();
@@ -61,10 +65,6 @@ public class main {
         // get the jdbc password of the user
         System.out.println("Database password :");
         String jdbcPass = reader.readLine();
-
-        // get the root of the file where the user want to export the logs
-        System.out.println("Root of the logs file :");
-        String logsFile = reader.readLine();
 
         // create an object Choice with the entries of the user
         return new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);

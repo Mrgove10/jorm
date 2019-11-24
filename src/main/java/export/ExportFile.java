@@ -26,6 +26,7 @@ public class ExportFile {
             FileOutputStream file = new FileOutputStream(parameters.RootFile);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
+            //Exporting all the files
             Export_Album.Export_Album(connection, file, out, log);
             Export_BOAlbum.Export_BOAlbum(connection, file, out, log);
             Export_LiveAlbum.Export_LiveAlbum(connection, file, out, log);
