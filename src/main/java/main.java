@@ -1,6 +1,6 @@
 import classes.Choice;
-import export.ExportFile;
-import importf.ImportFile;
+import exports.ExportFile;
+import imports.ImportFile;
 import logging.logger;
 
 import java.io.BufferedReader;

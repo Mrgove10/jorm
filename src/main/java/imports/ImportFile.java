@@ -1,4 +1,4 @@
-package importf;
+package imports;
 
 import classes.Album;
 import classes.Choice;

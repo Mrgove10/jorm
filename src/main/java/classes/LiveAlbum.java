@@ -11,6 +11,6 @@ public class LiveAlbum extends Album {
         //Todo : missing albumID
         super(id, members, title, dateRelease);
         PlaceOfRecording = placeOfRecording;
-        AlbumID = albumID;  
+        AlbumID = albumID;
     }
 }
