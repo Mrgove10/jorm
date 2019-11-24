@@ -23,7 +23,7 @@ public class Export_LiveAlbum {
                 // get the info of the album
                 int id = result.getInt("ID");
                 log.AddLog(logger.Severity.Debug, "Adding LiveAlbum " + id);
-                String AlbumID = result.getString("AlbumID");
+                String AlbumID = result.getString("AlbumID"); //TODO
                 String PlaceOfRecording = result.getString("PlaceOfRecording");
                 String members = result.getString("Members");
                 String title = result.getString("Title");
