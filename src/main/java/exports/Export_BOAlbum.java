@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//TODO : all this
 public class Export_BOAlbum {
     public static void Export_BOAlbum(Connection connection, FileOutputStream file, ObjectOutputStream out, logger log) throws SQLException, IOException {
         Statement state = null;
