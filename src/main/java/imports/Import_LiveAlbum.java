@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Import_LiveAlbum {
     public static void Import_LiveAlbum(logger log, Connection connection, ObjectInputStream in) throws IOException {
-// Method for deserialization of object
+        // Method for deserialization of object
         ArrayList<LiveAlbum> albums = new ArrayList<>();
         try {
             // while no error is catch
@@ -50,7 +50,8 @@ public class Import_LiveAlbum {
                     log.AddLog(logger.Severity.Debug, request);
                     state.executeUpdate(request);
                 }
-                log.AddLog(logger.Severity.Debug, "File has been Imported");
+                log.AddLog(logger.Severity.Debug, "LiveAlbum has been uploaded to database");
+                System.out.println("LiveAlbum has been uploaded to database");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,7 +65,6 @@ public class Import_LiveAlbum {
                     e.printStackTrace();
                 }
             }
-            in.close();
         }
     }
 }

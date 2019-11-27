@@ -54,7 +54,8 @@ public class Import_Album {
                     log.AddLog(logger.Severity.Debug, request);
                     state.executeUpdate(request);
                 }
-                log.AddLog(logger.Severity.Debug, "File has been Imported");
+                log.AddLog(logger.Severity.Debug, "Album has been uploaded to database");
+                System.out.println("Album has been uploaded to database");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -68,7 +69,6 @@ public class Import_Album {
                     e.printStackTrace();
                 }
             }
-            in.close();
         }
     }
 }
