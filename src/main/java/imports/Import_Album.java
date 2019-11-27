@@ -28,8 +28,8 @@ public class Import_Album {
                     albums.add(album);
                 }
 
-                System.out.println("Object has been deserialized ");
-                System.out.println(album.Title);
+                log.AddLog(logger.Severity.Debug, "Album has been deserialized");
+                System.out.println("Album has been deserialized");
             }
         } catch (EOFException ex) {
             // the exception is catch when all objects have been already read
@@ -64,8 +64,6 @@ public class Import_Album {
                     // close all the connection
                     if (state != null)
                         state.close();
-                    if (connection != null)
-                        connection.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
