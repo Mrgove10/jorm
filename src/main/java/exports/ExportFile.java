@@ -13,8 +13,6 @@ import java.sql.SQLException;
 
 public class ExportFile {
     private static logger log = new logger();
-
-    //serialization
     public void Export(Choice parameters) throws IOException {
 
         Connection connection = null;

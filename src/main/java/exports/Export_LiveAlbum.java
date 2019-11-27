@@ -17,7 +17,7 @@ public class Export_LiveAlbum {
         ResultSet result = null;
         try {
             state = connection.createStatement();
-            result = state.executeQuery("SELECT * FROM `LiveAlbum`,`Album` WHERE `Album`.`ID` = `LiveAlbum`.`ID`");
+            result = state.executeQuery("SELECT * FROM `LiveAlbum`,`Album` WHERE `LiveAlbum`.`AlbumID` = `Album`.`ID`");
             // while we don't have export all the object of the database
             while (result.next()) {
                 // get the info of the album
@@ -34,8 +34,8 @@ public class Export_LiveAlbum {
 
                 // write the object in the file
                 out.writeObject(album);
-                log.AddLog(logger.Severity.Debug, "Object has been serialized");
-                System.out.println("Object has been serialized");
+                log.AddLog(logger.Severity.Debug, "LiveAlbum has been serialized");
+                System.out.println("LiveAlbum has been serialized");
             }
             result.close();
         } catch (Exception e) {

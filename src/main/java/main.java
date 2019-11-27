@@ -44,29 +44,37 @@ public class main {
         // get if the user want to import or export
         System.out.println("Press 1 to import a file");
         System.out.println("Press 2 to export from database");
+        System.out.println("Press 3 import Debug");
+        System.out.println("Press 4 export Debug");
         int type = Integer.parseInt(reader.readLine());
+        if (type ==1 || type ==2) {
+            // get the root of the file where the user want to export the logs
+            System.out.println("Root of the logs file :");
+            String logsFile = reader.readLine();
 
-        // get the root of the file where the user want to export the logs
-        System.out.println("Root of the logs file :");
-        String logsFile = reader.readLine();
+            // get the root of the file to import or the root of the file where the user want to export
+            System.out.println("Root of the file export/import:");
+            String rootFile = reader.readLine();
 
-        // get the root of the file to import or the root of the file where the user want to export
-        System.out.println("Root of the file export/import:");
-        String rootFile = reader.readLine();
+            // get the jdbc url of the user
+            System.out.println("URL JDBC :");
+            String jdbcUrl = reader.readLine();
 
-        // get the jdbc url of the user
-        System.out.println("URL JDBC :");
-        String jdbcUrl = reader.readLine();
+            // get the jdbc user of the user
+            System.out.println("Database user:");
+            String jdbcUser = reader.readLine();
 
-        // get the jdbc user of the user
-        System.out.println("Database user:");
-        String jdbcUser = reader.readLine();
-
-        // get the jdbc password of the user
-        System.out.println("Database password :");
-        String jdbcPass = reader.readLine();
-
-        // create an object Choice with the entries of the user
-        return new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
+            // get the jdbc password of the user
+            System.out.println("Database password :");
+            String jdbcPass = reader.readLine();
+            // create an object Choice with the entries of the user
+            return new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
+        } else if (type == 3) {
+            return new Choice(1, "src/main/java/files/testFileExport.ser", "jdbc:mysql://stephan-server-xl.duckdns.org:3306/TestUser?useSSL=false", "TestUser", "X5m^@g8mXqrj", "src/main/java/files/Logs.log");
+        }
+        else if (type == 4) {
+            return new Choice(2, "src/main/java/files/testFileExport.ser", "jdbc:mysql://stephan-server-xl.duckdns.org:3306/TestUser?useSSL=false", "TestUser", "X5m^@g8mXqrj", "src/main/java/files/Logs.log");
+        }
+        return null;
     }
 }

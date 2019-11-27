@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class ImportFile {
     private static logger log = new logger();
+
     public void Import(Choice parameters) throws IOException {
         try {
             // Reading the object from a file
@@ -19,9 +20,9 @@ public class ImportFile {
             ObjectInputStream in = new ObjectInputStream(file);
             Connection connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
 
+            // Import_BOAlbum.Import_BOAlbum(log, connection, in);
             Import_Album.Import_Album(log, connection, in);
-     //       Import_BOAlbum.Import_BOAlbum(log, connection, in);
-       //     Import_LiveAlbum.Import_LiveAlbum(log, connection, in);
+            Import_LiveAlbum.Import_LiveAlbum(log, connection, in);
 
             file.close();
         } catch (IOException ex) {

@@ -1,6 +1,8 @@
 package imports;
 
 import classes.Album;
+import classes.BOAlbum;
+import classes.LiveAlbum;
 import logging.logger;
 
 import java.io.EOFException;
@@ -19,8 +21,12 @@ public class Import_Album {
                 // read each object in the file
                 Album album = (Album) in.readObject();
 
-                // add the object in the list
-                albums.add(album);
+                if (album instanceof BOAlbum || album instanceof LiveAlbum) {
+                    //not a "pure album"
+                } else {
+                    // add the object in the list
+                    albums.add(album);
+                }
 
                 System.out.println("Object has been deserialized ");
                 System.out.println(album.Title);
@@ -40,7 +46,7 @@ public class Import_Album {
                 // foreach object in the list albums
                 for (Album album : albums) {
                     // insert it in the table Album
-                    String request = "INSERT INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) VALUES (" +
+                    String request = "REPLACE INTO `Album`(`ID`, `Members`, `Title`, `DateRelease`) VALUES (" +
                             album.Id + ",'" +
                             album.Members + "','" +
                             album.Title + "','" +

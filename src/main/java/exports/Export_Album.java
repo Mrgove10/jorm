@@ -29,8 +29,8 @@ public class Export_Album {
 
                 // write the object in the file
                 out.writeObject(album);
-                log.AddLog(logger.Severity.Debug, "Object has been serialized");
-                System.out.println("Object has been serialized");
+                log.AddLog(logger.Severity.Debug, "Album has been serialized");
+                System.out.println("Album has been serialized");
             }
             result.close();
         } catch (Exception e) {
