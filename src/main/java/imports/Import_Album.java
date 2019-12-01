@@ -33,9 +33,9 @@ public class Import_Album {
                     livealbums.add((LiveAlbum) album);
                     log.AddLog(logger.Severity.Debug, "LiveAlbum " + album.Id + " has been deserialized");
                     System.out.println("LiveAlbum " + album.Id + " has been deserialized");
-                } else if (album instanceof Album) {
+                } else if (album != null) {
                     // add the object in the list
-                    albums.add((Album) album);
+                    albums.add(album);
                     log.AddLog(logger.Severity.Debug, "Album " + album.Id + " has been deserialized");
                     System.out.println("Album " + album.Id + " has been deserialized");
                 }
@@ -65,6 +65,7 @@ public class Import_Album {
             log.AddLog(logger.Severity.Debug, "All Album have been uploaded to database");
             System.out.println("All Album have been uploaded to database");
 
+            //calls the over functions
             Import_BOAlbum.Import_BOAlbum(log, connection, in, boalbums);
             Import_LiveAlbum.Import_LiveAlbum(log, connection, in, livealbums);
         } catch (Exception e) {

@@ -13,8 +13,6 @@ public class Album implements Serializable {
     public Date DateRelease;
 
     public Album(Integer id, String members, String title, Date dateRelease) throws IOException {
-        logger log = new logger();
-        log.AddLog(logger.Severity.Debug, "New Choice Object");
         Id = id;
         Members = members;
         Title = title;

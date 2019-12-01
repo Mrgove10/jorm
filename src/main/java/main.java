@@ -18,25 +18,30 @@ public class main {
         Choice choice = GetParameters();
 
         // check if the user want to export or import
-        switch (choice.TypeChoice) {
-            // if the user want to import
-            case 1:
-                log.AddLog(logger.Severity.Debug, "Import chosen");
-                System.out.println("Import in db...");
-                ImportFile importFile = new ImportFile();
-                importFile.Import(choice);
-                break;
-            // if the user want to export
-            case 2:
-                log.AddLog(logger.Severity.Debug, "Export chosen");
-                System.out.println("Export from db...");
-                ExportFile exportFile = new ExportFile();
-                exportFile.Export(choice);
-                break;
-            // if the user as not selected 1 ou 2
-            default:
-                System.out.println("Wrong option selected");
-                log.AddLog(logger.Severity.Error, "Wrong option selected");
+        if (choice != null) {
+            switch (choice.TypeChoice) {
+                // if the user want to import
+                case 1:
+                    log.AddLog(logger.Severity.Debug, "Import chosen");
+                    System.out.println("Import in db...");
+                    ImportFile importFile = new ImportFile();
+                    importFile.Import(choice);
+                    break;
+                // if the user want to export
+                case 2:
+                    log.AddLog(logger.Severity.Debug, "Export chosen");
+                    System.out.println("Export from db...");
+                    ExportFile exportFile = new ExportFile();
+                    exportFile.Export(choice);
+                    break;
+                // if the user as not selected 1 ou 2
+                default:
+                    System.out.println("Wrong option selected");
+                    log.AddLog(logger.Severity.Error, "Wrong option selected");
+            }
+        } else {
+            System.out.println("Wrong option selected");
+            log.AddLog(logger.Severity.Error, "Wrong option selected");
         }
     }
 
@@ -47,7 +52,7 @@ public class main {
         System.out.println("Press 3 import Debug");
         System.out.println("Press 4 export Debug");
         int type = Integer.parseInt(reader.readLine());
-        if (type ==1 || type ==2) {
+        if (type == 1 || type == 2) {
             // get the root of the file where the user want to export the logs
             System.out.println("Root of the logs file :");
             String logsFile = reader.readLine();
@@ -71,8 +76,7 @@ public class main {
             return new Choice(type, rootFile, jdbcUrl, jdbcUser, jdbcPass, logsFile);
         } else if (type == 3) {
             return new Choice(1, "src/main/java/files/testFileExport.ser", "jdbc:mysql://stephan-server-xl.duckdns.org:3306/TestUser?useSSL=false", "TestUser", "X5m^@g8mXqrj", "src/main/java/files/Logs.log");
-        }
-        else if (type == 4) {
+        } else if (type == 4) {
             return new Choice(2, "src/main/java/files/testFileExport.ser", "jdbc:mysql://stephan-server-xl.duckdns.org:3306/TestUser?useSSL=false", "TestUser", "X5m^@g8mXqrj", "src/main/java/files/Logs.log");
         }
         return null;

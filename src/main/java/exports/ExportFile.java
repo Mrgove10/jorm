@@ -8,15 +8,14 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ExportFile {
     private static logger log = new logger();
+
     public void Export(Choice parameters) throws IOException {
 
         Connection connection = null;
-        PreparedStatement ps = null;
         try {
             connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
 
@@ -32,15 +31,11 @@ public class ExportFile {
             // then close all the connection
             out.flush();
             out.close();
-
         } catch (Exception e) {
             e.printStackTrace();
             log.AddLog(logger.Severity.Error, e.toString());
         } finally {
             try {
-
-                if (ps != null)
-                    ps.close();
                 if (connection != null)
                     connection.close();
             } catch (SQLException e) {
