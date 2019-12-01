@@ -20,9 +20,9 @@ public class ImportFile {
             ObjectInputStream in = new ObjectInputStream(file);
             Connection connection = DriverManager.getConnection(parameters.JdbcUrl, parameters.JdbcUser, parameters.JdbcPassword);
 
+            Import_Album.Import_Album(log, connection, in);
             Import_LiveAlbum.Import_LiveAlbum(log, connection, in);
             Import_BOAlbum.Import_BOAlbum(log, connection, in);
-            Import_Album.Import_Album(log, connection, in);
 
             file.close();
             in.close();

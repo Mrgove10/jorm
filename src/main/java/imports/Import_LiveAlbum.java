@@ -8,6 +8,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -25,10 +26,9 @@ public class Import_LiveAlbum {
                 if (livealbum instanceof LiveAlbum) {
                     // add the object in the list
                     albums.add((LiveAlbum) livealbum);
+                    log.AddLog(logger.Severity.Debug, "LiveAlbum has been deserialized");
+                    System.out.println("LiveAlbum has been deserialized");
                 }
-
-                log.AddLog(logger.Severity.Debug, "LiveAlbum has been deserialized");
-                System.out.println("LiveAlbum has been deserialized");
             }
         } catch (EOFException ex) {
             // the exception is catch when all objects have been already read
@@ -42,13 +42,16 @@ public class Import_LiveAlbum {
                 state = connection.createStatement();
                 // foreach object in the list albums
                 for (LiveAlbum livealbum : albums) {
-                    // insert it in the table Album
-                    String request = "REPLACE INTO `LiveAlbum`(`ID`, `AlbumID`, `PlaceOfRecording`) VALUES (" +
-                            livealbum.Id + ",'" +
-                            livealbum.AlbumID + "','" +
-                            livealbum.PlaceOfRecording + "')";
-                    log.AddLog(logger.Severity.Debug, request);
-                    state.executeUpdate(request);
+                    String query = "REPLACE INTO `LiveAlbum`(`ID`, `AlbumID`, `PlaceOfRecording`) VALUES (?,?,?)";
+                    // create the mysql insert preparedstatement
+                    PreparedStatement preparedStmt = connection.prepareStatement(query);
+                    preparedStmt.setInt(1, livealbum.Id);
+                    preparedStmt.setInt(2, livealbum.AlbumID );
+                    preparedStmt.setString(3,livealbum.PlaceOfRecording);
+
+                    // execute the preparedstatement
+                    preparedStmt.execute();
+                    log.AddLog(logger.Severity.Debug, query);
                 }
                 log.AddLog(logger.Severity.Debug, "LiveAlbum has been uploaded to database");
                 System.out.println("LiveAlbum has been uploaded to database");
